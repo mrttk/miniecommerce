@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace EcommerceAPI.Domain.Entities
 {
-    public class Product : BaseEntity
+    public class Order : BaseEntity
     {
-        public string Name { get; set; }
-        public int Stock { get; set; }
-        public decimal Price { get; set; }
-        public ICollection<Order> Orders { get; set; }
+        public string Description { get; set; }
+        public string Address { get; set; }
+        public ICollection<Product> Products { get; set; }
     }
 }

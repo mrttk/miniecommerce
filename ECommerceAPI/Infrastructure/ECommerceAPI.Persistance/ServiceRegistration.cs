@@ -9,6 +9,8 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using ECommerceAPI.Persistance.Contexts;
+using ECommerceAPI.Application.Repositories;
+using ECommerceAPI.Persistance.Repositories;
 
 namespace ECommerceAPI.Persistance
 {
@@ -17,7 +19,12 @@ namespace ECommerceAPI.Persistance
         public static void AddPersistanceServices(this IServiceCollection services)
         {
             services.AddDbContext<ECommerceAPIContext>(options => options.UseNpgsql(Configuration.ConnectionString));
-            services.AddSingleton<IProductService, ProductService>();
+            services.AddScoped<ICustomerReadRepository, CustomerReadRepository>();
+            services.AddScoped<ICustomerWriteRepository, CustomerWriteRepository>();
+            services.AddScoped<IProductReadRepository, ProductReadRepository>();
+            services.AddScoped<IProductWriteRepository, ProductWriteRepository>();
+            services.AddScoped<IOrderReadRepository, OrderReadRepository>();
+            services.AddScoped<IOrderWriteRepository, OrderWriteRepository>();
         }
     }
 }

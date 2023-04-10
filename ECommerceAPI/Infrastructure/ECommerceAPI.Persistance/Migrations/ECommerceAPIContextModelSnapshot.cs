@@ -56,7 +56,7 @@ namespace ECommerceAPI.Persistance.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<Guid?>("CustomerId")
+                    b.Property<Guid>("CustomerId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Description")
@@ -117,9 +117,13 @@ namespace ECommerceAPI.Persistance.Migrations
 
             modelBuilder.Entity("EcommerceAPI.Domain.Entities.Order", b =>
                 {
-                    b.HasOne("EcommerceAPI.Domain.Entities.Customer", null)
+                    b.HasOne("EcommerceAPI.Domain.Entities.Customer", "Customer")
                         .WithMany("Orders")
-                        .HasForeignKey("CustomerId");
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("OrderProduct", b =>

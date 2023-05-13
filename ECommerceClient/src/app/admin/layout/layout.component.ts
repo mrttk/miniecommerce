@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-declare var alertify: any;
+import {
+  AlertifyService,
+  MessageType,
+  Position,
+} from 'src/app/services/admin/alertify.service';
 
 @Component({
   selector: 'app-layout',
@@ -7,8 +11,12 @@ declare var alertify: any;
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent {
-  constructor() {}
+  constructor(private alertify: AlertifyService) {}
   ngOnInit(): void {
-    alertify.success('ready!');
+    this.alertify.message('Hello', {
+      messageType: MessageType.Notify,
+      position: Position.BottomRight,
+      delay: 10,
+    });
   }
 }

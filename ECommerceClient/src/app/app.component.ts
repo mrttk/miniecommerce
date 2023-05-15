@@ -15,9 +15,9 @@ declare var $: any;
 export class AppComponent {
   title = 'ECommerceClient';
   constructor(private toastrService: CustomToasterService) {
-    toastrService.message('Merhaba', 'Emre', {
-      messsageType: ToastrMessageType.Info,
-      position: ToastrPosition.BottomFullWidth,
-    });
+    // toastrService.message('Merhaba', 'Emre', {
+    //   messsageType: ToastrMessageType.Info,
+    //   position: ToastrPosition.BottomFullWidth,
+    // });
   }
 }

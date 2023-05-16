@@ -21,3 +21,7 @@ export class AppComponent {
     // });
   }
 }
+
+$.get('https://localhost:7082/api/products', data => {
+  console.log(data);
+});

@@ -22,12 +22,37 @@ export class CreateComponent extends BaseComponent {
     create_product.name = name.value;
     create_product.stock = parseInt(stock.value);
     create_product.price = parseFloat(price.value);
+
+    if (!name.value) {
+      this.alertify.message("Product name cannot be empty.", {
+        dismissOthers: true,
+        messageType: MessageType.Error,
+        position: Position.BottomRight
+      });
+      return;
+    }
+
+    if (parseInt(stock.value)<0) {
+      this.alertify.message("Stock value cannot be smaller then 0 (zero).", {
+        dismissOthers: true,
+        messageType: MessageType.Error,
+        position: Position.BottomRight
+      });
+      return;
+    }
+
     this.productService.create(create_product, () => {
       this.hideSpinner(SpinnerType.Timer);
       this.alertify.message("Product added successfully.", {
         dismissOthers: true,
         messageType: MessageType.Success,
-        position: Position.TopRight
+        position: Position.BottomRight
+      });
+    }, errorMessage => {
+      this.alertify.message(errorMessage, {
+        dismissOthers: true,
+        messageType: MessageType.Error,
+        position: Position.BottomRight
       });
     });
   }
